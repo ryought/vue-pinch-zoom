@@ -161,6 +161,12 @@ export class IvyPinch {
             if (touches && touches.length === 0) {
                 this.eventType = undefined;
             }
+            this.emitEvent({
+                name: 'touchend',
+                detail: {
+                    scale: this.scale
+                }
+            })
         }
 
         /* mouseup */
@@ -168,6 +174,12 @@ export class IvyPinch {
             this.draggingMode = false;
             this.updateInitialValues();
             this.eventType = undefined;
+            this.emitEvent({
+                name: 'mouseup',
+                detail: {
+                    scale: this.scale
+                }
+            })
         }
     }
 
@@ -207,6 +219,12 @@ export class IvyPinch {
         }
 
         this.transformElement(0);
+        this.emitEvent({
+            name: 'mousemove',
+            detail: {
+                scale: this.scale
+            }
+        })
     }
 
     handleDoubleTap = (event: any) => {
@@ -246,6 +264,12 @@ export class IvyPinch {
             }
 
             this.transformElement(0);
+            this.emitEvent({
+                name: 'didpinch',
+                detail: {
+                    scale: this.scale
+                }
+            })
         }
     }
 
