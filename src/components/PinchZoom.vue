@@ -137,6 +137,7 @@ export default class PinchZoom extends Vue {
         if (event.name === "wheel") {
             this.isZoomedIn = event.detail.scale > 1;
         }
+        this.$emit(event.name, event.detail)
     }
 
     toggleZoom() {
