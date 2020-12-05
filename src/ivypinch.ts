@@ -177,6 +177,8 @@ export class IvyPinch {
             this.emitEvent({
                 name: 'mouseup',
                 detail: {
+                    x: this.moveX,
+                    y: this.moveY,
                     scale: this.scale
                 }
             })
@@ -220,7 +222,7 @@ export class IvyPinch {
 
         this.transformElement(0);
         this.emitEvent({
-            name: 'mousemove',
+            name: 'didmove',
             detail: {
                 scale: this.scale
             }
@@ -267,6 +269,8 @@ export class IvyPinch {
             this.emitEvent({
                 name: 'didpinch',
                 detail: {
+                    x: this.moveX,
+                    y: this.moveY,
                     scale: this.scale
                 }
             })
