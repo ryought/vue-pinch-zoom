@@ -25,7 +25,7 @@ export default class PinchZoom extends Vue {
     @Prop() disabled: boolean;
     @Prop() disablePan: boolean;
     @Prop() overflow: "hidden" | "visible";
-    //@Prop() zoomControlScale: number;
+    @Prop() zoomControlScale: number;
     @Prop() disableZoomControl: "disable" | "never" | "auto";
     @Prop() backgroundColor: string;
     @Prop() limitPan: boolean;
