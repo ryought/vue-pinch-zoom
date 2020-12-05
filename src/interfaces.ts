@@ -1,4 +1,4 @@
-export interface Properties {
+export interface Interfaces {
     "transition-duration"?: number;
     "double-tap"?: boolean;
     "double-tap-scale"?: number;
