@@ -78,6 +78,9 @@ export class IvyPinch {
         /* Init */
         this.setBasicStyles();
 
+        /* Transition listener */
+        this.element.addEventListener('transitionend', this.handleTransitionend, false);
+
         /*
          * Listeners
          */
@@ -161,6 +164,15 @@ export class IvyPinch {
             if (touches && touches.length === 0) {
                 this.eventType = undefined;
             }
+
+            this.emitEvent({
+                name: 'touchend',
+                detail: {
+                    x: this.moveX,
+                    y: this.moveY,
+                    scale: this.scale
+                }
+            })
         }
 
         /* mouseup */
@@ -168,6 +180,15 @@ export class IvyPinch {
             this.draggingMode = false;
             this.updateInitialValues();
             this.eventType = undefined;
+
+            this.emitEvent({
+                name: 'mouseup',
+                detail: {
+                    x: this.moveX,
+                    y: this.moveY,
+                    scale: this.scale
+                }
+            })
         }
     }
 
@@ -294,6 +315,17 @@ export class IvyPinch {
 
     handleResize = (_event: any) => {
         this.setAutoHeight();
+    }
+
+    handleTransitionend = (_event: any) => {
+        this.emitEvent({
+            name: 'didScale',
+            detail: {
+                x: this.moveX,
+                y: this.moveY,
+                scale: this.scale
+            }
+        })
     }
 
     handleLimitZoom() {
@@ -554,15 +586,6 @@ export class IvyPinch {
     transformElement(duration: any) {
         this.element.style.transition = "all " + duration + "ms";
         this.element.style.transform = "matrix(" + Number(this.scale) + ", 0, 0, " + Number(this.scale) + ", " + Number(this.moveX) + ", " + Number(this.moveY) + ")";
-
-        this.emitEvent({
-            name: 'didScale',
-            detail: {
-                x: this.moveX,
-                y: this.moveY,
-                scale: this.scale
-            }
-        })
     }
 
     isTouchScreen() {

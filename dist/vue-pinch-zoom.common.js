@@ -4674,6 +4674,15 @@ function () {
         if (touches && touches.length === 0) {
           _this.eventType = undefined;
         }
+
+        _this.emitEvent({
+          name: 'touchend',
+          detail: {
+            x: _this.moveX,
+            y: _this.moveY,
+            scale: _this.scale
+          }
+        });
       }
       /* mouseup */
 
@@ -4684,6 +4693,15 @@ function () {
         _this.updateInitialValues();
 
         _this.eventType = undefined;
+
+        _this.emitEvent({
+          name: 'mouseup',
+          detail: {
+            x: _this.moveX,
+            y: _this.moveY,
+            scale: _this.scale
+          }
+        });
       }
     };
     /*
@@ -4817,6 +4835,17 @@ function () {
       _this.setAutoHeight();
     };
 
+    this.handleTransitionend = function (_event) {
+      _this.emitEvent({
+        name: 'didScale',
+        detail: {
+          x: _this.moveX,
+          y: _this.moveY,
+          scale: _this.scale
+        }
+      });
+    };
+
     this.element = properties.element;
     this.elementTarget = this.element.querySelector('*').tagName;
     this.parentElement = this.element.parentElement;
@@ -4830,6 +4859,9 @@ function () {
     /* Init */
 
     this.setBasicStyles();
+    /* Transition listener */
+
+    this.element.addEventListener('transitionend', this.handleTransitionend, false);
     /*
      * Listeners
      */
@@ -5147,14 +5179,6 @@ function () {
     value: function transformElement(duration) {
       this.element.style.transition = "all " + duration + "ms";
       this.element.style.transform = "matrix(" + Number(this.scale) + ", 0, 0, " + Number(this.scale) + ", " + Number(this.moveX) + ", " + Number(this.moveY) + ")";
-      this.emitEvent({
-        name: 'didScale',
-        detail: {
-          x: this.moveX,
-          y: this.moveY,
-          scale: this.scale
-        }
-      });
     }
   }, {
     key: "isTouchScreen",

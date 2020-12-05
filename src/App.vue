@@ -5,6 +5,7 @@
       :limitZoom="10"
       :zoomControlScale="10"
       :doubleTapScale="10"
+      @mouseup="mouseup"
       @didScale="didScale"
     >
       <img
@@ -28,6 +29,9 @@ import PinchZoom from './components/PinchZoom.vue';
 export default class myLib extends Vue {
   public didScale(details: any): void {
     console.log("didScale %s", JSON.stringify(details))
+  }
+  public mouseup(details: any): void {
+    console.log("mouseup %s", JSON.stringify(details))
   }
 }
 </script>
