@@ -3248,7 +3248,7 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"5798baf6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PinchZoom.vue?vue&type=template&id=2834791e&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"843a87fa-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PinchZoom.vue?vue&type=template&id=2834791e&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"pinch-zoom-wrapper",style:(_vm.styleObject)},[_c('div',{ref:"wrapper",staticClass:"pinch-zoom-content",class:{'pz-dragging': _vm.isDragging()}},[_vm._t("default")],2),(_vm.isControl())?_c('div',{staticClass:"pz-zoom-button pz-zoom-control-position-bottom",class:{'pz-zoom-button-out': _vm.isZoomedIn},on:{"click":function($event){return _vm.toggleZoom()}}}):_vm._e()])}
 var staticRenderFns = []
 
@@ -4674,13 +4674,6 @@ function () {
         if (touches && touches.length === 0) {
           _this.eventType = undefined;
         }
-
-        _this.emitEvent({
-          name: 'touchend',
-          detail: {
-            scale: _this.scale
-          }
-        });
       }
       /* mouseup */
 
@@ -4691,13 +4684,6 @@ function () {
         _this.updateInitialValues();
 
         _this.eventType = undefined;
-
-        _this.emitEvent({
-          name: 'mouseup',
-          detail: {
-            scale: _this.scale
-          }
-        });
       }
     };
     /*
@@ -4738,13 +4724,6 @@ function () {
       }
 
       _this.transformElement(0);
-
-      _this.emitEvent({
-        name: 'mousemove',
-        detail: {
-          scale: _this.scale
-        }
-      });
     };
 
     this.handleDoubleTap = function (event) {
@@ -4789,13 +4768,6 @@ function () {
         }
 
         _this.transformElement(0);
-
-        _this.emitEvent({
-          name: 'didpinch',
-          detail: {
-            scale: _this.scale
-          }
-        });
       }
     };
 
@@ -5175,6 +5147,14 @@ function () {
     value: function transformElement(duration) {
       this.element.style.transition = "all " + duration + "ms";
       this.element.style.transform = "matrix(" + Number(this.scale) + ", 0, 0, " + Number(this.scale) + ", " + Number(this.moveX) + ", " + Number(this.moveY) + ")";
+      this.emitEvent({
+        name: 'didScale',
+        detail: {
+          x: this.moveX,
+          y: this.moveY,
+          scale: this.scale
+        }
+      });
     }
   }, {
     key: "isTouchScreen",
