@@ -164,6 +164,8 @@ export class IvyPinch {
             this.emitEvent({
                 name: 'touchend',
                 detail: {
+                    x: this.moveX,
+                    y: this.moveY,
                     scale: this.scale
                 }
             })
@@ -224,6 +226,8 @@ export class IvyPinch {
         this.emitEvent({
             name: 'didmove',
             detail: {
+                x: this.moveX,
+                y: this.moveY,
                 scale: this.scale
             }
         })
@@ -315,6 +319,8 @@ export class IvyPinch {
         this.emitEvent({
             name: 'wheel',
             detail: {
+                x: this.moveX,
+                y: this.moveY,
                 scale: this.scale
             }
         });
