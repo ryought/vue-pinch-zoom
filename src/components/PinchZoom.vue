@@ -145,6 +145,11 @@ export default class PinchZoom extends Vue {
         this.isZoomedIn = this.getScale() > 1;
     }
 
+    zoomTo(x:number, y:number) {
+        this.ivyPinch.setZoom({ scale: 3.0, center:[x,y] })
+        this.$emit("wheel", { scale: this.ivyPinch.scale })
+    }
+
     pollLimitZoom() {
         this.ivyPinch.pollLimitZoom();
     }
