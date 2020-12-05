@@ -161,14 +161,6 @@ export class IvyPinch {
             if (touches && touches.length === 0) {
                 this.eventType = undefined;
             }
-            this.emitEvent({
-                name: 'touchend',
-                detail: {
-                    x: this.moveX,
-                    y: this.moveY,
-                    scale: this.scale
-                }
-            })
         }
 
         /* mouseup */
@@ -176,14 +168,6 @@ export class IvyPinch {
             this.draggingMode = false;
             this.updateInitialValues();
             this.eventType = undefined;
-            this.emitEvent({
-                name: 'mouseup',
-                detail: {
-                    x: this.moveX,
-                    y: this.moveY,
-                    scale: this.scale
-                }
-            })
         }
     }
 
@@ -223,14 +207,6 @@ export class IvyPinch {
         }
 
         this.transformElement(0);
-        this.emitEvent({
-            name: 'didmove',
-            detail: {
-                x: this.moveX,
-                y: this.moveY,
-                scale: this.scale
-            }
-        })
     }
 
     handleDoubleTap = (event: any) => {
@@ -270,14 +246,6 @@ export class IvyPinch {
             }
 
             this.transformElement(0);
-            this.emitEvent({
-                name: 'didpinch',
-                detail: {
-                    x: this.moveX,
-                    y: this.moveY,
-                    scale: this.scale
-                }
-            })
         }
     }
 
@@ -319,8 +287,6 @@ export class IvyPinch {
         this.emitEvent({
             name: 'wheel',
             detail: {
-                x: this.moveX,
-                y: this.moveY,
                 scale: this.scale
             }
         });
@@ -588,6 +554,16 @@ export class IvyPinch {
     transformElement(duration: any) {
         this.element.style.transition = "all " + duration + "ms";
         this.element.style.transform = "matrix(" + Number(this.scale) + ", 0, 0, " + Number(this.scale) + ", " + Number(this.moveX) + ", " + Number(this.moveY) + ")";
+
+        console.log("did scale");
+        this.emitEvent({
+            name: 'didScale',
+            detail: {
+                x: this.moveX,
+                y: this.moveY,
+                scale: this.scale
+            }
+        })
     }
 
     isTouchScreen() {
