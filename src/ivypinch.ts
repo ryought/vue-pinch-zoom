@@ -555,7 +555,6 @@ export class IvyPinch {
         this.element.style.transition = "all " + duration + "ms";
         this.element.style.transform = "matrix(" + Number(this.scale) + ", 0, 0, " + Number(this.scale) + ", " + Number(this.moveX) + ", " + Number(this.moveY) + ")";
 
-        console.log("did scale");
         this.emitEvent({
             name: 'didScale',
             detail: {
