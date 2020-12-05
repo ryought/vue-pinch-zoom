@@ -3257,12 +3257,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"843a87fa-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PinchZoom.vue?vue&type=template&id=2834791e&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"843a87fa-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PinchZoom.vue?vue&type=template&id=08e6474e&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"pinch-zoom-wrapper",style:(_vm.styleObject)},[_c('div',{ref:"wrapper",staticClass:"pinch-zoom-content",class:{'pz-dragging': _vm.isDragging()}},[_vm._t("default")],2),(_vm.isControl())?_c('div',{staticClass:"pz-zoom-button pz-zoom-control-position-bottom",class:{'pz-zoom-button-out': _vm.isZoomedIn},on:{"click":function($event){return _vm.toggleZoom()}}}):_vm._e()])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/PinchZoom.vue?vue&type=template&id=2834791e&
+// CONCATENATED MODULE: ./src/components/PinchZoom.vue?vue&type=template&id=08e6474e&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.join.js
 var es_array_join = __webpack_require__("a15b");
@@ -5487,7 +5487,7 @@ function (_Vue) {
     key: "zoomTo",
     value: function zoomTo(x, y) {
       this.ivyPinch.setZoom({
-        scale: 3.0,
+        scale: this.limitZoom,
         center: [x, y]
       });
       this.$emit("wheel", {
