@@ -652,7 +652,7 @@ export class IvyPinch {
                 this.moveY = this.initialMoveY - (changedTouches[0].clientY - this.elementPosition.top) * (this.properties.doubleTapScale - 1);
             } else {
                 let zoomControlScale = this.properties.zoomControlScale || 0;
-                this.scale = this.initialScale * (zoomControlScale + 1);
+                this.scale = this.initialScale * (zoomControlScale);
                 this.moveX = this.initialMoveX - this.element.offsetWidth * (this.scale - 1) / 2;
                 this.moveY = this.initialMoveY - this.element.offsetHeight * (this.scale - 1) / 2;
             }

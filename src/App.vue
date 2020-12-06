@@ -3,8 +3,8 @@
     <pinch-zoom
       :minScale="1"
       :limitZoom="10"
-      :zoomControlScale="10"
-      :doubleTapScale="10"
+      :zoomControlScale="3"
+      :doubleTapScale="3"
       @mouseup="mouseup"
       @didScale="didScale"
     >
